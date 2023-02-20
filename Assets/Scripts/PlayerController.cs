@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
     bool canJump, canDoubleJump;
     public Transform groundCheckPoint;
     public LayerMask whatIsGround;
+
+    public GameObject bullet;
+    public Transform firePoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -86,5 +89,11 @@ public class PlayerController : MonoBehaviour
         }
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0,mouseInput.x,0));
         camTrans.rotation = Quaternion.Euler(camTrans.rotation.eulerAngles + new Vector3(mouseInput.y,0,0));
+
+        //Handle shooting
+        if(Input.GetMouseButtonDown(0))
+        {
+            Instantiate(bullet, firePoint.position, firePoint.rotation);
+        }    
     }
 }
